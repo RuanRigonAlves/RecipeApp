@@ -1,0 +1,65 @@
+:root {
+  --color-primary-1: #57cc99;
+  --color-primary-2: #4aac54;
+  --color-background: #f9f5f3;
+
+  --text-color: #79706d;
+
+  --color-grad-1: #96e49e;
+  --color-grad-1-2: #bacabb;
+  --color-grad-2: #38a3a5;
+  --color-grad-2-2: #535353;
+  --grad-mode: 0.4turn;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-size: 16px;
+}
+ul {
+  list-style: none;
+}
+
+body {
+  font-family: Helvetica;
+  font-weight: 400;
+  color: var(--text-color);
+  line-height: 1.6;
+  background-image: linear-gradient(
+    var(--grad-mode),
+    var(--color-grad-1),
+    var(--color-grad-2)
+  );
+  background-size: cover;
+  /* background-repeat: no-repeat; */
+  min-height: calc(100vh - 8vw);
+}
+
+.container {
+  margin: 3vw auto;
+  background-color: var(--color-background);
+  max-width: 90%;
+  min-height: 20rem;
+  border-radius: 10px;
+  box-shadow: 0 2rem 6rem 0.5rem rgba(97, 85, 81, 0.2);
+  display: grid;
+  row-gap: 1rem;
+  grid-template-rows: 6rem minmax(30rem, auto);
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas:
+    "head head"
+    "list recipe";
+}
+
+button {
+  cursor: pointer;
+  background-color: var(--color-background);
+}
+
+.icon {
+  max-height: 24px;
+  max-width: 24px;
+  fill: var(--color-primary-1);
+}
