@@ -47,6 +47,10 @@
   font-weight: 600;
   font-size: 0.9rem;
   text-transform: uppercase;
+  max-width: 23ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .preview__publisher {
@@ -54,4 +58,21 @@
   font-weight: 600;
   font-size: 0.7rem;
   text-transform: uppercase;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn--inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  color: var(--text--color);
+}
+
+.btn--inline svg {
+  margin: 3px;
 }

@@ -23,7 +23,9 @@ class RecipeView extends View {
           <svg class="recipe__info-icon icon">
             <use href="src/img/icons.svg#icon-users"></use>
           </svg>
-          <span class="recipe__info-data recipe__info-data--people">${this._data.servings}</span>
+          <span class="recipe__info-data recipe__info-data--people">${
+            this._data.servings
+          }</span>
           <span class="recipe__info-text">servings</span>
         </div>
         <div class="recipe__info">
@@ -36,56 +38,15 @@ class RecipeView extends View {
       </div>
       <!-- RECIPE DETAILS -->
 
-      <!-- RECIPE INGREDIENTS -->
-      <div class="recipe__ingredients">
-        <h2 class="heading--2">Recipe Ingredients</h2>
-        <ul class="recipe__ingredients-list">
-          <li class="recipe__ingredient">
-            <svg class="recipe__icon icon">
-              <use href="src/img/icons.svg#icon-check"></use>
-            </svg>
-            <div class="recipe__quantity">1000</div>
-            <div class="recipe__description">
-              <span class="recipe__unit">g</span>
-              pasta
+            <!-- RECIPE INGREDIENTS -->
+            <div class="recipe__ingredients">
+            <h2 class="heading--2">Recipe Ingredients</h2>
+            <ul class="recipe__ingredients-list">
+            ${this.ingredientsMarkup()}
+            </ul>
             </div>
-          </li>
 
-          <li class="recipe__ingredient">
-            <svg class="recipe__icon icon">
-              <use href="src/img/icons.svg#icon-check"></use>
-            </svg>
-            <div class="recipe__quantity">0.5</div>
-            <div class="recipe__description">
-              <span class="recipe__unit">cup</span>
-              ricotta cheese
-            </div>
-          </li>
-
-          <li class="recipe__ingredient">
-            <svg class="recipe__icon icon">
-              <use href="src/img/icons.svg#icon-check"></use>
-            </svg>
-            <div class="recipe__quantity">1000</div>
-            <div class="recipe__description">
-              <span class="recipe__unit">g</span>
-              pasta
-            </div>
-          </li>
-
-          <li class="recipe__ingredient">
-            <svg class="recipe__icon icon">
-              <use href="src/img/icons.svg#icon-check"></use>
-            </svg>
-            <div class="recipe__quantity">0.5</div>
-            <div class="recipe__description">
-              <span class="recipe__unit">cup</span>
-              ricotta cheese
-            </div>
-          </li>
-        </ul>
-      </div>
-      <!-- RECIPE INGREDIENTS -->
+            <!-- RECIPE INGREDIENTS -->
 
       <!-- RECIPE DIRECTIONS -->
       <div class="recipe__directions">
@@ -106,6 +67,27 @@ class RecipeView extends View {
 
     <!-- RECIPE -->
     `;
+  }
+
+  ingredientsMarkup() {
+    const markup = this._data.ingredients
+      .map((ing) => {
+        return `<li class="recipe__ingredient">
+          <svg class="recipe__icon icon">
+            <use href="src/img/icons.svg#icon-check"></use>
+          </svg>
+          <div class="recipe__quantity">${
+            ing.quantity ? ing.quantity : ""
+          }</div>
+          <div class="recipe__description">
+            <span class="recipe__unit">${ing.unit}</span>
+            ${ing.description}
+          </div>
+        </li>`;
+      })
+      .join(" ");
+
+    return markup;
   }
 }
 

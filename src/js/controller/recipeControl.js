@@ -1,21 +1,18 @@
 import { callRecipe } from "../model/fetchRecipe.js";
-import recipeView from "../view/recipeView.js";
+import RecipeView from "../view/RecipeView.js";
 
-export const controlRecipes = async function (
-  recipeID = "5ed6604591c37cdc054bc886"
-) {
+export const controlRecipes = async function (recipeID) {
   try {
-    const recipe = await callRecipe();
+    const recipe = await callRecipe(recipeID);
     console.log(recipe);
 
-    recipeView.setData(recipe);
+    RecipeView.setData(recipe);
 
-    const check = recipeView.checkData();
-    console.log(check);
+    RecipeView.checkData();
 
-    const recipeMarkup = recipeView._generateMarkup();
-    recipeView.render(recipeMarkup);
+    RecipeView.ingredientsMarkup();
+
+    const recipeMarkup = RecipeView._generateMarkup();
+    RecipeView.render(recipeMarkup);
   } catch (err) {}
 };
-
-controlRecipes();

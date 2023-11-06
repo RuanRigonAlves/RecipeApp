@@ -1,11 +1,28 @@
+import { state } from "./state.js";
+import { API_KEY } from "../config/config.js";
+
 export const callRecipe = async function (recipeID) {
   const response = await fetch(
-    "https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886"
+    `https://forkify-api.herokuapp.com/api/v2/recipes/${recipeID}`
   );
   const jsonResponse = await response.json();
   const { recipe } = jsonResponse.data;
-  //   console.log(recipe);
+
   return recipe;
 };
 
-// callRecipe();
+export const fetchSearchedRecipe = async function (query = "pizza") {
+  const response = await fetch(
+    `https://forkify-api.herokuapp.com/api/v2/recipes?search=${query}&${API_KEY}`
+  );
+
+  const jsonResponse = await response.json();
+
+  console.log(jsonResponse);
+
+  state.results = jsonResponse.results;
+  state.pages = Math.ceil(jsonResponse.results / 10);
+  state.recipes = jsonResponse.data.recipes;
+
+  return jsonResponse;
+};
