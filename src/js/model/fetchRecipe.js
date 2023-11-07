@@ -1,5 +1,5 @@
 import { state } from "./state.js";
-import { API_KEY } from "../config/config.js";
+import { API_KEY, RES_PER_PAGE } from "../config/config.js";
 
 export const callRecipe = async function (recipeID) {
   const response = await fetch(
@@ -21,7 +21,7 @@ export const fetchSearchedRecipe = async function (query = "pizza") {
   console.log(jsonResponse);
 
   state.results = jsonResponse.results;
-  state.pages = Math.ceil(jsonResponse.results / 10);
+  state.pages = Math.ceil(jsonResponse.results / RES_PER_PAGE);
   state.recipes = jsonResponse.data.recipes;
 
   return jsonResponse;

@@ -26,6 +26,9 @@ class ResultsView extends View {
   }
 
   displayPagination(page, pages) {
+    this._pagination.innerHTML = "";
+    page = +page;
+    pages = +pages;
     console.log(page, pages);
     if (page === 1 && pages > page) {
       this._pagination.insertAdjacentHTML(
@@ -51,7 +54,7 @@ class ResultsView extends View {
 
   nextPageMarkup(page) {
     let markup = `
-    <button class="btn--inline pagination__btn--next">
+    <button class="btn--inline pagination__btn--next" data-page="${page + 1}">
       <span>Page ${page + 1}</span>
       <svg class="icon">
         <use href="/src/img/icons.svg#icon-arrow-right"></use>
@@ -62,11 +65,11 @@ class ResultsView extends View {
   }
   prevPageMarkup(page) {
     let markup = `
-    <button class="btn--inline pagination__btn--prev">
+    <button class="btn--inline pagination__btn--prev" data-page="${page - 1}">
       <svg class="icon">
         <use href="/src/img/icons.svg#icon-arrow-left"></use>
       </svg>
-      <span>Page ${page + 1}</span>
+      <span>Page ${page - 1}</span>
     </button>
     `;
     return markup;
@@ -74,14 +77,14 @@ class ResultsView extends View {
 
   bothPageMarkup(page) {
     const markup = `
-    <button class="btn--inline pagination__btn--prev">
+    <button class="btn--inline pagination__btn--prev" data-page="${page - 1}">
       <svg class="icon">
         <use href="/src/img/icons.svg#icon-arrow-left"></use>
       </svg>
       <span>Page ${page - 1}</span>
     </button>
 
-    <button class="btn--inline pagination__btn--next">
+    <button class="btn--inline pagination__btn--next" data-page="${page + 1}">
       <span>Page ${page + 1}</span>
       <svg class="icon">
         <use href="/src/img/icons.svg#icon-arrow-right"></use>
@@ -106,10 +109,10 @@ class ResultsView extends View {
   pagination(callback) {
     this._pagination.addEventListener("click", function (e) {
       console.log(e);
-      const goTo = e.target.closest("button");
+      const clicked = e.target.closest("button");
+      const attibuteValue = clicked.getAttribute("data-page");
 
-      console.log(goTo);
-      callback(goTo);
+      callback(attibuteValue);
     });
   }
 

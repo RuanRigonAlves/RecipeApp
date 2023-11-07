@@ -6,6 +6,7 @@ import { init } from "./initHandlers.js";
 
 export const recipedSearchedControl = async function () {
   try {
+    ResultsView.renderSpinner();
     const query = searchRecipeView.querySearchRecipe();
 
     await fetchSearchedRecipe(query);
@@ -19,6 +20,8 @@ export const recipedSearchedControl = async function () {
 };
 
 export const callPage = function (page = 1) {
+  ResultsView._clear();
+
   state.page = page;
 
   ResultsView.displaySearchResults(selectedPage(page));
