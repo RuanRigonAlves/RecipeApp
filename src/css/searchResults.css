@@ -76,3 +76,11 @@
 .btn--inline svg {
   margin: 3px;
 }
+
+.preview a {
+  cursor: pointer;
+}
+
+.no-recipe-container p {
+  text-align: center;
+}

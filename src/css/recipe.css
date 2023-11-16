@@ -1,7 +1,7 @@
 .recipe {
   grid-area: recipe;
   display: grid;
-  height: 1000px;
+  min-height: 900px;
   grid-template-columns: 3fr 1.2fr;
   grid-template-rows: 1.2fr 2fr;
   column-gap: 2rem;
@@ -80,7 +80,8 @@
 }
 
 .recipe__ingredients {
-  margin-top: 20px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -111,4 +112,22 @@
 }
 .recipe__btn svg {
   fill: #fff;
+}
+
+.no-search {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.recipe__info {
+  font-weight: 600;
+  display: flex;
+}
+
+.recipe__info svg {
+  margin-right: 5px;
+}
+
+.recipe__info-text {
+  margin-left: 5px;
 }

@@ -1,6 +1,7 @@
 import View from "./View.js";
 
 class ResultsView extends View {
+  _searchResults = document.querySelector(".no-recipe-container");
   _parentElement = document.querySelector(".result");
   _pagination = document.querySelector(".pagination");
   _clicked = "";
@@ -118,6 +119,14 @@ class ResultsView extends View {
 
   addHandlerSearchResults(handler) {
     handler();
+  }
+
+  noResultsFound(query) {
+    console.log(this._searchResults);
+    const markup = `
+    <p class"recipe-not-found">Sorry i couldn't find any recipe: ${query}</p>
+    `;
+    this._searchResults.insertAdjacentHTML("afterbegin", markup);
   }
 }
 

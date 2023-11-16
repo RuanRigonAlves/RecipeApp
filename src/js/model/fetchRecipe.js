@@ -11,7 +11,7 @@ export const callRecipe = async function (recipeID) {
   return recipe;
 };
 
-export const fetchSearchedRecipe = async function (query = "pizza") {
+export const fetchSearchedRecipe = async function (query) {
   const response = await fetch(
     `https://forkify-api.herokuapp.com/api/v2/recipes?search=${query}&${API_KEY}`
   );
